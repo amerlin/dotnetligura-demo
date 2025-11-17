@@ -66,22 +66,50 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
 
 	return (
 		<Box
-			onClick={() => setShowDescription(!showDescription)}
 			sx={{
 				width: 260,
 				height: 340,
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				backgroundColor: '#f5f5f5',
-				borderRadius: '12px',
-				padding: 2,
-				boxShadow: '0 2px 12px rgba(0,0,0,0.09)',
-				cursor: 'pointer',
+				position: 'relative',
+				flexShrink: 0,
+				perspective: '2000px',
+				overflow: 'visible',
 			}}
 		>
-			{!showDescription ? (
-				<>
+			<Box
+				onClick={() => setShowDescription(!showDescription)}
+				sx={{
+					position: 'absolute',
+					top: 0,
+					left: 0,
+					width: '100%',
+					height: '100%',
+					transition: 'transform 0.8s',
+					transformStyle: 'preserve-3d',
+					transform: showDescription ? 'rotateY(180deg)' : 'rotateY(0deg)',
+					transformOrigin: '50% 50%',
+					cursor: 'pointer',
+				}}
+			>
+				{/* Front side */}
+				<Box
+					sx={{
+						position: 'absolute',
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0,
+						width: '100%',
+						height: '100%',
+						backfaceVisibility: 'hidden',
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						backgroundColor: '#f5f5f5',
+						borderRadius: '12px',
+						padding: 2,
+						boxShadow: '0 2px 12px rgba(0,0,0,0.09)',
+					}}
+				>
 					<img
 						src={member.image}
 						alt={member.name}
@@ -114,9 +142,30 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
 							<InstagramIcon />
 						</IconButton>
 					</Box>
-				</>
-			) : (
-				<Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', height: '100%', padding: 1 }}>
+				</Box>
+
+				{/* Back side */}
+				<Box
+					sx={{
+						position: 'absolute',
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0,
+						width: '100%',
+						height: '100%',
+						backfaceVisibility: 'hidden',
+						transform: 'rotateY(180deg)',
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'flex-start',
+						alignItems: 'center',
+						backgroundColor: '#f5f5f5',
+						borderRadius: '12px',
+						padding: 3,
+						boxShadow: '0 2px 12px rgba(0,0,0,0.09)',
+					}}
+				>
 					<Typography variant="h6" sx={{ fontFamily: "'Titillium Web', sans-serif", fontWeight: 600, fontSize: '1.25rem', marginBottom: 2 }}>
 						{member.name}
 					</Typography>
@@ -124,7 +173,7 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
 						{member.description}
 					</Typography>
 				</Box>
-			)}
+			</Box>
 		</Box>
 	);
 }
