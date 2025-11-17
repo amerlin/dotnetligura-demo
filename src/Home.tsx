@@ -11,7 +11,6 @@ import { useState } from 'react';
 
 const menuItems = [
 	{ label: 'Home', href: '#home' },
-	{ label: 'Chi siamo', href: '#about' },
 	{ label: '.NET Conf 2025', href: '#dotnet-conf' },
 	{ label: 'Il Team', href: '#team' },
 	{ label: 'Eventi passati', href: '#events' },
@@ -150,12 +149,12 @@ export default function Home() {
 					</div>
 				</section>
 				<section className="about fullscreen-section" id="about">
-					<div className="section-content">
+					<div className="section-content" style={{ paddingTop: '1rem', paddingBottom: '1rem' }}>
 						<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-							<Typography variant="h3" align="center" sx={{ fontFamily: "'Titillium Web', sans-serif", fontWeight: 600, marginBottom: 0 }}>
+							{/* <Typography variant="h3" align="center" sx={{ fontFamily: "'Titillium Web', sans-serif", fontWeight: 600, marginBottom: 0 }}>
 								Chi siamo
-							</Typography>
-							<Box sx={{ marginTop: 2, width: '100%', px: 4 }}>
+							</Typography> */}
+							<Box sx={{ width: '100%', px: 4 }}>
 								<Typography variant="body1" align="center" sx={{ fontFamily: "'Titillium Web', sans-serif", fontSize: '1.25rem', width: '100%' }}>
 									DotNet Liguria è la prima community .NET della Liguria, nata per promuovere la condivisione di conoscenze, esperienze e networking tra sviluppatori, professionisti e appassionati del mondo Microsoft .NET. Organizziamo eventi, workshop e incontri per favorire la crescita tecnica e la collaborazione sul territorio.
 								</Typography>
@@ -164,7 +163,7 @@ export default function Home() {
 					</div>
 				</section>
 				<section className="dotnet-conf fullscreen-section" id="dotnet-conf">
-					<Container maxWidth={false} className="section-content" style={{ padding: '0 4rem', paddingTop: '0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+					<Container maxWidth={false} className="section-content" style={{ padding: '0 4rem', paddingTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 						<Typography variant="h2" align="center" gutterBottom sx={{ fontFamily: "'Titillium Web', sans-serif", fontWeight: 600, marginTop: 0, marginBottom: 3, width: '100%' }}>
 							.NET Conf 2025 - Le Novità di .NET 10
 						</Typography>
@@ -313,7 +312,7 @@ export default function Home() {
 					</Container>
 				</section>
 				<section className="board fullscreen-section" id="team">
-					<div className="section-content" style={{ flexDirection: 'column' }}>
+					<div className="section-content" style={{ flexDirection: 'column', paddingTop: '30px' }}>
 						<Typography variant="h3" align="center" sx={{ fontFamily: "'Titillium Web', sans-serif", fontWeight: 600, marginBottom: 3, width: '100%' }}>
 							Il Team
 						</Typography>

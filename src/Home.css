@@ -172,6 +172,8 @@ html {
   font-size: 24px; /* Aumentata la dimensione del font per migliorare la leggibilità */
   font-family: 'Titillium Web', sans-serif;
   font-weight: 400;
+  padding: 0.5rem 0 !important;
+  min-height: auto !important;
 }
 .events.fullscreen-section {
   background: linear-gradient(120deg, #72C02C, #ffffff);
@@ -445,7 +447,7 @@ body {
 
 /* Aumenta ulteriormente il padding a destra e sinistra per il testo della sezione "Chi siamo" */
 .about.fullscreen-section .section-content {
-  padding: 0 6rem; /* Imposta un padding maggiore a destra e sinistra */
+  padding: 0.5rem 6rem !important; /* Ridotto padding verticale e mantenuto quello orizzontale */
 }
 
 /* Mantiene il titolo della sezione "Il Team" sempre in alto */
