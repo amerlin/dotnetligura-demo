@@ -65,51 +65,13 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
 	const [showDescription, setShowDescription] = useState(false);
 
 	return (
-		<Box
-			sx={{
-				width: 260,
-				height: 340,
-				position: 'relative',
-				flexShrink: 0,
-				perspective: '2000px',
-				overflow: 'visible',
-			}}
-		>
-			<Box
+		<div className="flip-card">
+			<div
+				className={`flip-card-inner ${showDescription ? 'flipped' : ''}`}
 				onClick={() => setShowDescription(!showDescription)}
-				sx={{
-					position: 'absolute',
-					top: 0,
-					left: 0,
-					width: '100%',
-					height: '100%',
-					transition: 'transform 0.8s',
-					transformStyle: 'preserve-3d',
-					transform: showDescription ? 'rotateY(180deg)' : 'rotateY(0deg)',
-					transformOrigin: '50% 50%',
-					cursor: 'pointer',
-				}}
 			>
 				{/* Front side */}
-				<Box
-					sx={{
-						position: 'absolute',
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						width: '100%',
-						height: '100%',
-						backfaceVisibility: 'hidden',
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						backgroundColor: '#f5f5f5',
-						borderRadius: '12px',
-						padding: 2,
-						boxShadow: '0 2px 12px rgba(0,0,0,0.09)',
-					}}
-				>
+				<div className="flip-card-front">
 					<img
 						src={member.image}
 						alt={member.name}
@@ -142,39 +104,19 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
 							<InstagramIcon />
 						</IconButton>
 					</Box>
-				</Box>
+				</div>
 
 				{/* Back side */}
-				<Box
-					sx={{
-						position: 'absolute',
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						width: '100%',
-						height: '100%',
-						backfaceVisibility: 'hidden',
-						transform: 'rotateY(180deg)',
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'flex-start',
-						alignItems: 'center',
-						backgroundColor: '#f5f5f5',
-						borderRadius: '12px',
-						padding: 3,
-						boxShadow: '0 2px 12px rgba(0,0,0,0.09)',
-					}}
-				>
+				<div className="flip-card-back">
 					<Typography variant="h6" sx={{ fontFamily: "'Titillium Web', sans-serif", fontWeight: 600, fontSize: '1.25rem', marginBottom: 2 }}>
 						{member.name}
 					</Typography>
 					<Typography variant="body2" sx={{ fontFamily: "'Titillium Web', sans-serif", fontSize: '1rem', textAlign: 'center', color: '#333' }}>
 						{member.description}
 					</Typography>
-				</Box>
-			</Box>
-		</Box>
+				</div>
+			</div>
+		</div>
 	);
 }
 
@@ -361,15 +303,22 @@ export default function Home() {
 					</Container>
 				</section>
 				<section className="board fullscreen-section" id="team">
-					<div className="section-content" style={{ flexDirection: 'column', paddingTop: '30px' }}>
+					<div className="section-content" style={{ flexDirection: 'column', paddingTop: '30px', paddingBottom: '50px' }}>
 						<Typography variant="h3" align="center" sx={{ fontFamily: "'Titillium Web', sans-serif", fontWeight: 600, marginBottom: 3, width: '100%' }}>
 							Il Team
 						</Typography>
-						<Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, width: '100%' }}>
-							{teamMembers.map(member => (
-								<TeamMemberCard key={member.name} member={member} />
-							))}
-						</Box>
+						<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '32px', width: '100%' }}>
+							<div style={{ display: 'flex', justifyContent: 'center', gap: '32px', flexWrap: 'wrap' }}>
+								{teamMembers.slice(0, 4).map(member => (
+									<TeamMemberCard key={member.name} member={member} />
+								))}
+							</div>
+							<div style={{ display: 'flex', justifyContent: 'center', gap: '32px', flexWrap: 'wrap' }}>
+								{teamMembers.slice(4).map(member => (
+									<TeamMemberCard key={member.name} member={member} />
+								))}
+							</div>
+						</div>
 					</div>
 				</section>
 				<footer style={{
